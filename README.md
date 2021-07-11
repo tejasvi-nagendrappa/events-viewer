@@ -4,7 +4,7 @@ This is an Simple Version of Event View and Event Detail View built with React w
 
 ## Live Demo
 
-This application is hosted using github pages. You can click [here for an hosted demo] (https://tejasvi-nagendrappa.github.io/events-viewer).
+This application is hosted using github pages. You can click [here for an hosted demo](https://tejasvi-nagendrappa.github.io/events-viewer).
 
 ## Steps to run this project
 
