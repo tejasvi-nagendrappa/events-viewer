@@ -17,13 +17,17 @@ const { RangePicker } = DatePicker;
 
 const EventFilter = ({ onFilterClick }) => {
   const [filterState, updateFilter] = useState(initialState);
-
-  const { startsAt, endsAt, pageSize } = filterState;
+  const { pageSize } = filterState;
 
   const onRangeChange = (dateRanges) => {
-    const [start, end] = dateRanges;
-    const startAsIso = start.toISOString();
-    const endAsIso = end.toISOString();
+    let startAsIso = null;
+    let endAsIso = null;
+
+    if (dateRanges && dateRanges.length === 2) {
+      const [start, end] = dateRanges;
+      startAsIso = start.toISOString();
+      endAsIso = end.toISOString();
+    }
 
     updateFilter({
       ...filterState,
@@ -73,7 +77,6 @@ const EventFilter = ({ onFilterClick }) => {
           type="primary"
           shape="round"
           onClick={onFilterBtnClick}
-          disabled={!(startsAt && endsAt)}
         >
           Filter Events
         </Button>

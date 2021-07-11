@@ -13,3 +13,5 @@ export const ERROR_CODES_TEXT = {
   401: ['Not Authorized'],
   404: ['Not Found']
 }
+
+export const MESSAGE_DISPLAY_TIME = 5;

@@ -4,7 +4,7 @@ This is an Simple Version of Event View and Event Detail View built with React w
 
 ## Live Demo
 
-This application is hosted using github pages. You can click [here](https://tejasvi-nagendrappa.github.io/events-viewer).
+This application is hosted using github pages. You can click [here for an hosted demo] (https://tejasvi-nagendrappa.github.io/events-viewer).
 
 ## Steps to run this project
 
@@ -19,3 +19,8 @@ Application will run at port 3000.
 The tests have been written using React Testing Library.
 
 1. Keep the application running using `yarn test`
+
+## Future Improvments to be done
+
+1. Add Integration tests using Cypress
+2. Add More Unit Tests

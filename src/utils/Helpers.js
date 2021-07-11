@@ -1,3 +1,5 @@
+import { ERROR_CODES_TEXT } from "./AppConstants";
+
 const padDigit = num => (num < 10 ? `0${num}` : num);
 
 const formatDateTime = isoDate => {
@@ -16,4 +18,16 @@ const formatDateTime = isoDate => {
   return `${day}/${month}/${year} , ${formattedHour}:${minutes} ${amPm}`;
 };
 
-export { formatDateTime };
+const getFormattedErrorMessage = (statusCode) => {
+  const statusCodeReasons = ERROR_CODES_TEXT[statusCode] || [];
+  const genericErrorMsg = statusCodeReasons.length === 0
+    ? 'Error occured while connecting to server.'
+    : 'Error occured. This might be because of ';
+  const reason = statusCodeReasons.join(" ");
+  return `${genericErrorMsg} ${reason}`;
+};
+
+export {
+  formatDateTime,
+  getFormattedErrorMessage
+};

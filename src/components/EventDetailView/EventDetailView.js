@@ -7,8 +7,8 @@ import EventListView from '../EventListView';
 import { getEventDetail } from '../App/AppActions';
 import EmployeeList from '../EmployeeList';
 import { AppDispatchContext } from '../App';
-import { HIDE_EVENT_DETAIL } from '../../utils/AppConstants';
-import MessageList from '../MessageList';
+import { MESSAGE_DISPLAY_TIME, HIDE_EVENT_DETAIL } from '../../utils/AppConstants';
+import { getFormattedErrorMessage } from '../../utils/Helpers';
 
 const propTypes = {
   eventId: PropTypes.number.isRequired,
@@ -40,8 +40,8 @@ const EventDetailView = ({ eventId }) => {
       });
     } catch ({ statusCode }) {
       message.error(
-        <MessageList statusCode={statusCode} />,
-        5
+        getFormattedErrorMessage(statusCode),
+        MESSAGE_DISPLAY_TIME
       );
       updateState({
         hasError: true,

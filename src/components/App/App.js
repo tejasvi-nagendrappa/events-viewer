@@ -6,13 +6,14 @@ import EventDetailView from '../EventDetailView';
 import EventListView from '../EventListView';
 import EventFilter from '../EventFilter';
 import {
+  MESSAGE_DISPLAY_TIME,
   FETCH_EVENTS_SUCCESS, UPDATE_DATE_RANGE
 } from '../../utils/AppConstants';
 import ListViewFooter from '../ListViewFooter';
-import MessageList from '../MessageList';
 import { getEvents } from './AppActions';
 import reducer from './reducer';
 import './App.scss';
+import { getFormattedErrorMessage } from '../../utils/Helpers';
 
 const { Content } = Layout;
 
@@ -58,8 +59,8 @@ const App = () => {
       });
     } catch ({ statusCode }) {
       message.error(
-        <MessageList statusCode={statusCode} />,
-        5,
+        getFormattedErrorMessage(statusCode),
+        MESSAGE_DISPLAY_TIME,
       );
     } finally {
       updateEventFetchStatus(false);
@@ -71,8 +72,12 @@ const App = () => {
       limit: pageSize,
     };
 
-    if (startsAt && endsAt) {
-      queryParams = { ...queryParams, startsAt, endsAt };
+    if (startsAt) {
+      queryParams = { ...queryParams, startsAt };
+    }
+
+    if (endsAt) {
+      queryParams = { ...queryParams, endsAt };
     }
 
     fetchListOfEvents(queryParams);
@@ -83,8 +88,13 @@ const App = () => {
       limit: pageSize,
       offset: currentPage,
     };
-    if (startsAt && endsAt) {
-      queryParams = { ...queryParams, startsAt, endsAt };
+
+    if (startsAt) {
+      queryParams = { ...queryParams, startsAt };
+    }
+
+    if (endsAt) {
+      queryParams = { ...queryParams, endsAt };
     }
 
     fetchListOfEvents(queryParams, true);
@@ -100,6 +110,11 @@ const App = () => {
         type: UPDATE_DATE_RANGE,
         payload: { data: filterParams },
       });
+    } else {
+      message.info(
+        "Filter criteria has not changed. Try changing it to filter results.",
+        MESSAGE_DISPLAY_TIME
+      );
     }
   };
 
